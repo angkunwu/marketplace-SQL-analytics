@@ -1,6 +1,5 @@
 # Marketplace SQL Analytics — Project Plan
-
-**Recommended repository name:** `marketplace-sql-analytics`  
+ 
 **Repository description:** SQL-first analysis of marketplace delivery reliability and customer outcomes using DuckDB, Python, and Olist data.  
 **Suggested GitHub topics:** `sql`, `duckdb`, `python`, `data-analytics`, `data-quality`, `ecommerce`, `olist`, `portfolio-project`
 

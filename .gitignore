@@ -1,0 +1,13 @@
+# Downloaded datasets
+data/raw/
+
+# Local databases
+*.duckdb
+*.duckdb.wal
+
+# Python environment and caches
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
