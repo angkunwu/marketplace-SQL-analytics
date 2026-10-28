@@ -20,7 +20,8 @@ def show_result(cursor):
     for row in rows:
         print(format_row(row))
 
-sql = Path("SQL/profile_sources.sql").read_text()
+file_name = "SQL/delivery_reliability.sql" #"SQL/profile_sources.sql"
+sql = Path(file_name).read_text()
 connection = duckdb.connect()
 
 try:
