@@ -1,5 +1,6 @@
 from pathlib import Path
 import duckdb
+import argparse
 
 def show_result(cursor):
     headers = [column[0] for column in cursor.description]
@@ -20,7 +21,12 @@ def show_result(cursor):
     for row in rows:
         print(format_row(row))
 
-file_name = "SQL/delivery_reliability.sql" #"SQL/profile_sources.sql"
+#file_name = "SQL/delivery_reliability.sql" #"SQL/profile_sources.sql"
+parser = argparse.ArgumentParser(description="Run a SQL file with DuckDB.")
+parser.add_argument("file_name", help="Path to the SQL file to run (no quotes)")
+args = parser.parse_args()
+
+file_name = args.file_name
 sql = Path(file_name).read_text()
 connection = duckdb.connect()
 

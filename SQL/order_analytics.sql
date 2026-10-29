@@ -1,0 +1,4 @@
+-- Order status and delivery dates.
+-- Aggregated item counts, merchandise value, and freight.
+-- Aggregated payment value.
+-- The selected review and indicators for missing data.
