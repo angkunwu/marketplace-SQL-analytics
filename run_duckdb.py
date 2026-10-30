@@ -23,16 +23,34 @@ def show_result(cursor):
 
 #file_name = "SQL/delivery_reliability.sql" #"SQL/profile_sources.sql"
 parser = argparse.ArgumentParser(description="Run a SQL file with DuckDB.")
-parser.add_argument("file_name", help="Path to the SQL file to run (no quotes)")
+# parser.add_argument("file_name", help="Path to the SQL file to run (no quotes)")
+parser.add_argument(
+    "file_names",
+    nargs="+",
+    help="SQL files to run in the supplied order",
+)
 args = parser.parse_args()
 
-file_name = args.file_name
-sql = Path(file_name).read_text()
+# file_name = args.file_name
+# sql = Path(file_name).read_text()
 connection = duckdb.connect()
 
+# try:
+#     for number, statement in enumerate(connection.extract_statements(sql), start=1):
+#         print(f"\nQuery {number}:")
+#         show_result(connection.execute(statement.query))
+# finally:
+#     connection.close()
+
 try:
-    for number, statement in enumerate(connection.extract_statements(sql), start=1):
-        print(f"\nQuery {number}:")
-        show_result(connection.execute(statement.query))
+    for file_name in args.file_names:
+        print(f"\nFile: {file_name}")
+        sql = Path(file_name).read_text()
+
+        for number, statement in enumerate(
+            connection.extract_statements(sql), start=1
+        ):
+            print(f"\nQuery {number}:")
+            show_result(connection.execute(statement.query))
 finally:
     connection.close()
