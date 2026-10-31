@@ -46,6 +46,7 @@ selected_reviews AS (
 order_base AS (
     SELECT
         o.order_id,
+        o.customer_id,
         o.order_status,
         o.order_purchase_timestamp,
         o.order_delivered_customer_date,

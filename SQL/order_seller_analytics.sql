@@ -55,6 +55,7 @@ SELECT
     COUNT(*) AS orders_with_items,
     COUNT(is_late) AS eligible_delivery_orders,
     SUM(CASE WHEN is_late THEN 1 ELSE 0 END) AS late_orders,
+    SUM(CASE WHEN is_late THEN merchandise_value ELSE 0 END) AS merchandise_value_on_late_orders,
     ROUND(
         100.0 * SUM(CASE WHEN is_late THEN 1 ELSE 0 END) / NULLIF(COUNT(is_late), 0),
         2
@@ -65,5 +66,50 @@ HAVING COUNT(is_late) >= 100
 ORDER BY 
     1.0 * SUM(CASE WHEN is_late THEN 1 ELSE 0 END) / NULLIF(COUNT(is_late), 0) DESC,
     eligible_delivery_orders DESC,
+    seller_id
+LIMIT 5;
+
+-- Which sellers have the most late orders
+SELECT
+    seller_id,
+    COUNT(*) AS orders_with_items,
+    COUNT(is_late) AS eligible_delivery_orders,
+    SUM(CASE WHEN is_late THEN 1 ELSE 0 END) AS late_orders,
+    SUM(CASE WHEN is_late THEN merchandise_value ELSE 0 END) AS merchandise_value_on_late_orders,
+    ROUND(
+        100.0 * SUM(CASE WHEN is_late THEN 1 ELSE 0 END) / NULLIF(COUNT(is_late), 0),
+        2
+    ) AS late_delivery_percentage
+FROM order_seller_analytics
+GROUP BY seller_id
+HAVING COUNT(is_late) >= 100
+ORDER BY 
+    late_orders DESC,
+    merchandise_value_on_late_orders DESC,
+    seller_id
+LIMIT 5;
+
+
+-- How much multi-seller orders affect
+-- Sensitivity check: restrict to single-seller orders.
+-- Require at least 100 eligible deliveries within this subset.
+-- Delivery outcomes still do not establish seller responsibility.
+SELECT
+    seller_id,
+    COUNT(*) AS orders_with_items,
+    COUNT(is_late) AS eligible_delivery_orders,
+    SUM(CASE WHEN is_late THEN 1 ELSE 0 END) AS late_orders,
+    SUM(CASE WHEN is_late THEN merchandise_value ELSE 0 END) AS merchandise_value_on_late_orders,
+    ROUND(
+        100.0 * SUM(CASE WHEN is_late THEN 1 ELSE 0 END) / NULLIF(COUNT(is_late), 0),
+        2
+    ) AS late_delivery_percentage
+FROM order_seller_analytics
+WHERE seller_count = 1
+GROUP BY seller_id
+HAVING COUNT(is_late) >= 100
+ORDER BY 
+    late_orders DESC,
+    merchandise_value_on_late_orders DESC,
     seller_id
 LIMIT 5;
