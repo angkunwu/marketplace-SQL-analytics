@@ -1,0 +1,5 @@
+delay_band,eligible_orders,reviewed_orders,review_coverage_percentage,low_review_orders,low_review_percentage
+On time or early,89936,89443,99.45,8289,9.27
+1-7 days late,3672,3600,98.04,1778,49.39
+8-14 days late,1478,1446,97.83,1159,80.15
+15+ days late,1384,1335,96.46,1046,78.35
