@@ -11,3 +11,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .DS_Store
+
+# Private project notes and local checks
+.local/

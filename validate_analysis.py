@@ -1,6 +1,5 @@
 """Validate current full-data results; failures raise exceptions and exit nonzero."""
 from pathlib import Path
-import math
 import os
 
 import duckdb

@@ -92,8 +92,9 @@ Reproducible table: [regional delivery](results/regional_delivery.csv).
   about its observed counts. They do not include seller/customer/time clustering,
   multiple-comparison effects, missingness, selection bias, or future performance.
 - All findings are observational. No operational intervention or business impact
-  has been tested. Category-adjusted comparisons and synthetic edge-case tests
-  are not included in this reporting pass.
+  has been tested. Category-adjusted comparisons are outside this release. Synthetic tests cover
+  selected join, review-selection, missing-data, seller-grain, and monthly edge cases;
+  see [validation details](../docs/validation.md).
 
 Reproduce all figures and result tables with `python make_figures.py` after setup.
 Run `python validate_analysis.py` to check the current full-data pipeline.

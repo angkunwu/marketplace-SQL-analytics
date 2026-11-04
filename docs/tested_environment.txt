@@ -1,0 +1,16 @@
+Fresh-environment verification: 2026-11-04
+Python 3.11.6
+Platform: Darwin 27.2.0 (arm64)
+
+contourpy==1.3.3
+cycler==0.12.1
+duckdb==2.0.0
+fonttools==4.68.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+numpy==2.4.6
+packaging==26.3
+pillow==13.0.0
+pyparsing==3.3.3
+python-dateutil==4.0.0
+tzdata==2026.6
